@@ -39,7 +39,7 @@ from tobrot.helper_funcs.display_progress import humanbytes, Progress
 from tobrot.helper_funcs.help_Nekmo_ffmpeg import take_screen_shot
 from tobrot.helper_funcs.split_large_files import split_large_files
 
-# stackoverflow🤐
+# stackoverflow
 def getFolderSize(p):
     prepend = partial(os.path.join, p)
     return sum(
@@ -93,8 +93,8 @@ async def upload_to_tg(
             d_f_s = humanbytes(os.path.getsize(local_file_name))
             i_m_s_g = await message.reply_text(
                 "Telegram does not support uploading this file.\n"
-                f"Detected File Size: {d_f_s} 😡\n"
-                "\n🤖 trying to split the files 🌝🌝🌚"
+                f"Detected File Size: {d_f_s}\n"
+                "\n trying to split the files"
             )
             splitted_dir = await split_large_files(local_file_name)
             totlaa_sleif = os.listdir(splitted_dir)
@@ -103,7 +103,7 @@ async def upload_to_tg(
             LOGGER.info(totlaa_sleif)
             ba_se_file_name = os.path.basename(local_file_name)
             await i_m_s_g.edit_text(
-                f"Detected File Size: {d_f_s} 😡\n"
+                f"Detected File Size: {d_f_s}\n"
                 f"<code>{ba_se_file_name}</code> splitted into {number_of_files} files.\n"
                 "Trying to upload to Telegram, now ..."
             )
@@ -139,13 +139,13 @@ async def upload_to_tg(
     return dict_contatining_uploaded_files
 
 
-# © gautamajay52 thanks to Rclone team for this wonderful tool.🧘
+# © gautamajay52 thanks to Rclone team for this wonderful tool.
 
 
 async def upload_to_gdrive(file_upload, message, messa_ge, g_id):
     await asyncio.sleep(EDIT_SLEEP_TIME_OUT)
     del_it = await message.edit_text(
-        f"<a href='tg://user?id={g_id}'>🔊</a> Now Uploading to ☁️ Cloud!!!"
+        f"<a href='tg://user?id={g_id}'></a> Now Uploading to Cloud."
     )
     if not os.path.exists("rclone.conf"):
         with open("rclone.conf", "w+", newline="\n", encoding="utf-8") as fole:
@@ -202,7 +202,7 @@ async def upload_to_gdrive(file_upload, message, messa_ge, g_id):
         gjay = size(os.path.getsize(file_upload))
         button = []
         button.append(
-            [pyrogram.InlineKeyboardButton(text="☁️ CloudUrl ☁️", url=f"{gauti}")]
+            [pyrogram.InlineKeyboardButton(text="CloudUrl", url=f"{gauti}")]
         )
         if INDEX_LINK:
             indexurl = f"{INDEX_LINK}/{os.path.basename(file_upload)}"
@@ -211,14 +211,14 @@ async def upload_to_gdrive(file_upload, message, messa_ge, g_id):
             button.append(
                 [
                     pyrogram.InlineKeyboardButton(
-                        text="ℹ️ IndexUrl ℹ️", url=f"{tam_link}"
+                        text="IndexUrl", url=f"{tam_link}"
                     )
                 ]
             )
         button_markup = pyrogram.InlineKeyboardMarkup(button)
         await asyncio.sleep(EDIT_SLEEP_TIME_OUT)
         await messa_ge.reply_text(
-            f"🤖: Uploaded successfully `{os.path.basename(file_upload)}` <a href='tg://user?id={g_id}'>🤒</a>\n📀 Size: {gjay}",
+            f"Uploaded successfully `{os.path.basename(file_upload)}` <a href='tg://user?id={g_id}'></a>\n Size: {gjay}",
             reply_markup=button_markup,
         )
         os.remove(file_upload)
@@ -270,7 +270,7 @@ async def upload_to_gdrive(file_upload, message, messa_ge, g_id):
         LOGGER.info(gjay)
         button = []
         button.append(
-            [pyrogram.InlineKeyboardButton(text="☁️ CloudUrl ☁️", url=f"{gautii}")]
+            [pyrogram.InlineKeyboardButton(text="CloudUrl", url=f"{gautii}")]
         )
         if INDEX_LINK:
             indexurl = f"{INDEX_LINK}/{os.path.basename(file_upload)}/"
@@ -279,14 +279,14 @@ async def upload_to_gdrive(file_upload, message, messa_ge, g_id):
             button.append(
                 [
                     pyrogram.InlineKeyboardButton(
-                        text="ℹ️ IndexUrl ℹ️", url=f"{tam_link}"
+                        text="IndexUrl", url=f"{tam_link}"
                     )
                 ]
             )
         button_markup = pyrogram.InlineKeyboardMarkup(button)
         await asyncio.sleep(EDIT_SLEEP_TIME_OUT)
         await messa_ge.reply_text(
-            f"🤖: Uploaded successfully `{os.path.basename(file_upload)}` <a href='tg://user?id={g_id}'>🤒</a>\n📀 Size: {gjay}",
+            f"Uploaded successfully `{os.path.basename(file_upload)}` <a href='tg://user?id={g_id}'></a>\n Size: {gjay}",
             reply_markup=button_markup,
         )
         shutil.rmtree(file_upload)
@@ -326,7 +326,7 @@ async def upload_single_file(
         message_for_progress_display = message
         if not edit_media:
             message_for_progress_display = await message.reply_text(
-                "**Status :** `Starting Uploading 📤`\n\n**• FileName :** `{}`".format(os.path.basename(local_file_name))
+                "**Status :** `Starting Uploading...`\n\n**• FileName :** `{}`".format(os.path.basename(local_file_name))
             )
             prog = Progress(from_user, client, message_for_progress_display)
         sent_message = await message.reply_document(
@@ -356,7 +356,7 @@ async def upload_single_file(
             message_for_progress_display = message
             if not edit_media:
                 message_for_progress_display = await message.reply_text(
-                    "**Status :** `Starting Uploading 📤`\n\n**• FileName :** `{}`".format(os.path.basename(local_file_name))
+                    "**Status :** `Starting Uploading...`\n\n**• FileName :** `{}`".format(os.path.basename(local_file_name))
                 )
                 prog = Progress(from_user, client, message_for_progress_display)
             if local_file_name.upper().endswith(("MKV", "MP4", "WEBM", "FLV", "3GP", "AVI", "MOV", "OGG", "WMV", "M4V", "TS", "MPG", "MTS", "M2TS")):
@@ -509,7 +509,7 @@ async def upload_single_file(
                         os.path.dirname(os.path.abspath(local_file_name)),
                     )
                 # if a file, don't upload "thumb"
-                # this "diff" is a major derp -_- 😔😭😭
+                # this "diff" is a major derp -_-
                 thumb = None
                 if thumb_image_path is not None and os.path.isfile(thumb_image_path):
                     thumb = thumb_image_path
