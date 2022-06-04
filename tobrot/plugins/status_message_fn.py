@@ -40,12 +40,12 @@ from tobrot.UserDynaConfig import UserDynaConfig
 
 async def upload_as_doc(client, message):
     user_specific_config[message.from_user.id]=UserDynaConfig(message.from_user.id,True)
-    await message.reply_text("**🗞 Your Files Will Be Uploaded As Document 📁**")
+    await message.reply_text("**Your Files Will Be Uploaded As Document **")
 
 
 async def upload_as_video(client, message):
     user_specific_config[message.from_user.id]=UserDynaConfig(message.from_user.id,False)
-    await message.reply_text("**🗞 Your Files Will Be Uploaded As Streamable 🎞**")
+    await message.reply_text("**Your Files Will Be Uploaded As Streamable **")
  
 
 async def status_message_f(
@@ -109,7 +109,7 @@ async def status_message_f(
             f"<b>RAM:</b> <code>{ram}%</code> <b>CPU:</b> <code>{cpu}%</code>\n"
         )
         if msg == "":
-            msg = "🤷‍♂️ No Active, Queued or Paused TORRENTs"
+            msg = "No active downloads"
             msg = ms_g + "\n" + msg
             await to_edit.edit(msg)
             break
