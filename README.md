@@ -1,10 +1,10 @@
 ![MAXX LEECH V2](https://telegra.ph/file/af8f0596124714a17e4e2.png)
 
-## 👉 [Orginal Repository](https://github.com/gautamajay52/TorrentLeech-Gdrive)
+## [Orginal Repository](https://github.com/gautamajay52/TorrentLeech-Gdrive)
 
 ![Maxx](https://telegra.ph/file/d18fa7fa33f26f733adb9.png)
 
-## **Don't Kill Heroku please ☹️**
+## **Don't Kill Heroku please !**
 
 [![MAXX LEECH](https://telegra.ph/file/29d788a656dd517eafd0a.png)](https://telegram.dog/MaxxBots)
 
