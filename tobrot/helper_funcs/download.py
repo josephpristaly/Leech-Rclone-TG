@@ -78,6 +78,6 @@ async def download_tg(client, message):
                 f"Downloaded to <code>{the_real_download_location}</code> in <u>{ms}</u> seconds"
             )
         else:
-            await mess_age.edit_text("😔 Download Cancelled or some error happened")
+            await mess_age.edit_text("Download Cancelled or some error happened")
             return None, mess_age
     return the_real_download_location, mess_age
