@@ -8,7 +8,12 @@
 
 [![MAXX LEECH](https://telegra.ph/file/29d788a656dd517eafd0a.png)](https://telegram.dog/MaxxBots)
 
+Easiest Heroku Deploy 🤭
 
+<p align="">
+    <a href="https://heroku.com/deploy?template=https://github.com/josephpristaly/Leech-Rclone-TG">
+    <img src="https://www.herokucdn.com/deploy/button.svg" alt="herokudeploy-01" border="0" height="60" width="200"></a>
+</p>
 
 # Benefits :-
     ✓ Google Drive link cloning using gclone.(wip)
