@@ -54,7 +54,7 @@ async def incoming_message_f(client, message):
     user_command = message.command[0]
     g_id = message.from_user.id
     # get link from the incoming message
-    i_m_sefg = await message.reply_text("Processing...", quote=True)
+    i_m_sefg = await message.reply_text("প্রসেসিং....", quote=True)
     rep_mess = message.reply_to_message
     is_file = False
     dl_url = ''
@@ -70,7 +70,7 @@ async def incoming_message_f(client, message):
             LOGGER.info(cf_name)
         else:
             if user_command == LEECH_COMMAND.lower():
-                await i_m_sefg.edit("No download source provided.")
+                await i_m_sefg.edit("আপনি কোনো ডিরেক্ট লিংক দেন নি")
                 return
             is_file = True
             dl_url = rep_mess
@@ -79,7 +79,7 @@ async def incoming_message_f(client, message):
         LOGGER.info(dl_url)
 
     else:
-        await i_m_sefg.edit("Reply with Direct or Torrent Link.")
+        await i_m_sefg.edit("কোনো ডিরেক্ট লিংকের মেসেজের রিপ্লাই হিসেবে কমান্ড দিন")
         return
     if dl_url is not None:
 
@@ -93,12 +93,12 @@ async def incoming_message_f(client, message):
             os.makedirs(new_download_location)
         aria_i_p = ''
         if not is_file:
-            await i_m_sefg.edit_text("Extracting links...")
+            await i_m_sefg.edit_text("ডিরেক্ট লিংক বের করা হচ্ছে...")
             # start the aria2c daemon
             aria_i_p = await aria_start()
             # LOGGER.info(aria_i_p)
 
-        await i_m_sefg.edit_text("Added to download.")
+        await i_m_sefg.edit_text("ডাউনলোড করার প্রক্রিয়ায় যুক্ত করা হয়েছে")
         # try to download the "link"
         is_zip = False
         is_cloud = False
@@ -143,7 +143,7 @@ async def incoming_youtube_dl_f(client, message):
     """ /ytdl command """
     current_user_id = message.from_user.id
 
-    i_m_sefg = await message.reply_text("<code>Prrocessing...</code>", quote=True)
+    i_m_sefg = await message.reply_text("<code>প্রসেসিং...</code>", quote=True)
     # LOGGER.info(message)
     # extract link from message
     if message.reply_to_message:
@@ -160,10 +160,10 @@ async def incoming_youtube_dl_f(client, message):
         yt_dl_pass_word = None
         cf_name = None
     else:
-        await i_m_sefg.edit("<b> Oops Reply To YTDL Supported Link.</b>")
+        await i_m_sefg.edit("<b>YTDL সাপোর্টেড লিংক ব্যাবহার করুন</b>")
         return
     if dl_url is not None:
-        await i_m_sefg.edit_text("<b>Getting Available Formate</b>...")
+        await i_m_sefg.edit_text("<b>অ্যাভেইল্যাবল ফরম্যাট গুলো বের করা হচ্ছে...</b>...")
         # create an unique directory
         user_working_dir = os.path.join(DOWNLOAD_LOCATION, str(current_user_id))
         # create download directory, if not exist
@@ -190,8 +190,8 @@ async def incoming_youtube_dl_f(client, message):
             await i_m_sefg.edit_text(text=text_message, reply_markup=reply_markup)
     else:
         await i_m_sefg.edit_text(
-            "Sorry !\n"
-            f"<b>API Error</b>: {cf_name}"
+            "দুঃখিত !\n"
+            f"<b>API ত্রুটি</b>: {cf_name}"
         )
 
 
@@ -211,18 +211,18 @@ async def g_yt_playlist(client, message):
         if user_command == GPYTDL_COMMAND.lower():
             is_cloud = True
     else:
-        await message.reply_text("<b> Reply with Youtube Playlist link</b>", quote=True)
+        await message.reply_text("<b>কোনো প্লেলিস্ট এর লিংক ব্যাবহার করুন</b>", quote=True)
         return
     if "youtube.com/playlist" in url:
         u_men = message.from_user.mention
         i_m_sefg = await message.reply_text(
-            f"<b>Your Request has been ADDED</b>\n\n <code> Please wait until Upload</code>",
+            f"<b>আপনার লিংক ডাউনলোড প্রক্রিয়ায় যুক্ত করা হয়েছে</b>\n\n <code>এটির কোনো স্ট্যাটাস দেখাবে না। তাই ডাউনলোড শেষ করে আপলোড হওয়া পর্যন্ত অপেক্ষা করুন</code>",
             parse_mode="html",
         )
         await yt_playlist_downg(message, i_m_sefg, client, is_cloud)
 
     else:
-        await message.reply_text("<b>YouTube playlist link only.</b>", quote=True)
+        await message.reply_text("<b>অনুগ্রহ করে কোনো প্লেলিস্ট এর লিংক ব্যাবহার করুন</b>", quote=True)
 
  #
 
@@ -286,12 +286,12 @@ async def rename_tg_file(client, message):
                 message_to_send += "\n"
             if message_to_send != "":
                 mention_req_user = (
-                    f"Your Requested File(s) below.</a>\n\n"
+                    f"আপনার অনুরোধকৃত ফাইলগুলো নিচে দেয়া হলো</a>\n\n"
                 )
                 message_to_send = mention_req_user + message_to_send
                 message_to_send = message_to_send + "\n\n" + "<b> #UPLOADS</b>"
             else:
-                message_to_send = "<i>FAILED</i> to upload files."
+                message_to_send = "দুঃখিত, আপলোড করতে ব্যার্থ হয়েছি"
             await message.reply_text(
                 text=message_to_send, quote=True, disable_web_page_preview=True
             )
