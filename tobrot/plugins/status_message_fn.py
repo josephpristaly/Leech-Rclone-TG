@@ -109,7 +109,7 @@ async def status_message_f(
             f"<b>RAM:</b> <code>{ram}%</code> <b>CPU:</b> <code>{cpu}%</code>\n"
         )
         if msg == "":
-            msg = "No active downloads"
+            msg = "কোনো ডাউনলোড প্রক্রিয়া চলমান নেই !"
             msg = ms_g + "\n" + msg
             await to_edit.edit(msg)
             break
@@ -218,7 +218,7 @@ async def upload_document_f(client, message):
 
 async def eval_message_f(client, message):
     if message.from_user.id in AUTH_CHANNEL:
-        status_message = await message.reply_text("Processing ...")
+        status_message = await message.reply_text("প্রসেসিং ...")
         cmd = message.text.split(" ", maxsplit=1)[1]
 
         reply_to_id = message.message_id
@@ -249,7 +249,7 @@ async def eval_message_f(client, message):
         elif stdout:
             evaluation = stdout
         else:
-            evaluation = "Success"
+            evaluation = "সফভাবে সম্পন্ন হয়েছে !"
 
         final_output = (
             "<b>EVAL</b>: <code>{}</code>\n\n<b>OUTPUT</b>:\n<code>{}</code> \n".format(
